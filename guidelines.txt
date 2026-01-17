@@ -1,0 +1,331 @@
+PORTFOLIO WEBSITE PROJECT GUIDELINES & CHANGE LOG
+=================================================
+
+Date: December 27, 2025
+Project: Personal Portfolio Website for Fullstack Engineer
+
+APPROVAL PROCESS:
+- All changes must be documented here BEFORE implementation
+- User must approve each change before execution
+- No modifications allowed without prior documentation and approval
+
+PROJECT REQUIREMENTS:
+- NO REDUNDANT FILES OR CODE - Everything must be clean and efficient
+- NO HANGING CODE OR UNUSED FILES - Only active, necessary code remains
+- MEMORY EFFICIENT - Only up-to-date files and code should exist on computer
+- DELETE ANYTHING NOT BEING USED - Keep project lean and organized
+- CLEAN CODEBASE - Every file and line of code must serve a purpose
+- NO RUSHED, UNTESTED, OR INCORRECT CODE - All code must be thoroughly tested and verified before implementation
+- ZERO TOLERANCE FOR REDUNDANCY - No duplicate functionality, dependencies, or configuration across the entire project duration
+
+CHANGE LOG:
+===========
+
+[PENDING APPROVAL] - Change #1: Initialize Next.js Project Foundation
+Date: December 27, 2025
+Description: Create a basic Next.js React project with minimal setup to establish a blank webpage foundation
+Changes to be made:
+  - Run: npx create-next-app@latest . --js --empty --use-npm
+  - This will create package.json, next.config.js, basic folder structure
+  - Creates a minimal blank webpage that can run on localhost:3000
+Impact: Creates the fundamental project structure for the portfolio website
+Status: APPROVED ✓
+
+[IMPLEMENTED] - Change #1: Initialize Next.js Project Foundation
+Date: December 27, 2025
+Status: COMPLETED ✓
+
+[ISSUE ENCOUNTERED] - Change #1 Amendment: Folder Name Restriction
+Date: December 27, 2025
+Issue: NPM naming restrictions prevent using spaces and capitals in folder names
+Solution Required: Need to rename folder to "elisha-portfolio-website" or similar URL-friendly name
+
+[PENDING APPROVAL] - Change #2: Create URL-friendly Project Directory
+Date: December 27, 2025
+Description: Rename current directory to comply with NPM naming restrictions for Next.js setup
+Changes to be made:
+  - Suggest renaming folder to "elisha-portfolio-website" (lowercase, hyphens only)
+  - Then run: npx create-next-app@latest . --js --empty --use-npm
+  - This will create the minimal blank webpage foundation
+Impact: Ensures project can be properly initialized with Next.js
+Status: APPROVED ✓
+
+[IMPLEMENTED] - Change #2: Create URL-friendly Project Directory
+Date: December 27, 2025
+Status: COMPLETED ✓
+
+[PENDING APPROVAL] - Change #3: Initialize Clean Next.js Project
+Date: December 27, 2025
+Description: Create minimal Next.js project with clean, efficient codebase
+Changes to be made:
+  - Navigate to C:\Users\elish\Desktop\elisha-portfolio-website
+  - Run: npx create-next-app@latest . --js --empty --use-npm
+  - Remove any unnecessary template files created by Next.js
+  - Keep only essential files: package.json, next.config.js, app/page.js
+  - Create blank webpage that displays nothing but runs successfully
+Impact: Creates lean React/Next.js foundation with zero redundant code
+Status: APPROVED ✓
+
+[PENDING APPROVAL] - Change #4: Clean Up Old Directory Structure
+Date: December 27, 2025
+Description: Remove old directory and maintain single clean project location
+Changes to be made:
+  - Delete "Elisha Portfolio Website" directory (this current location)
+  - Move guidelines.txt to new elisha-portfolio-website directory
+  - Ensure no duplicate files or directories remain
+Impact: Maintains clean, efficient file system with no unused directories or files
+Status: APPROVED ✓
+
+[IMPLEMENTED] - Change #4: Clean Up Old Directory Structure
+Date: December 31, 2025
+Status: COMPLETED ✓
+
+[PENDING APPROVAL] - Change #5: Fix Windows-Specific npm Installation Issues
+Date: December 31, 2025
+Description: Resolve EPERM file permission errors and network connectivity issues preventing npm package installation
+Root Cause Analysis:
+  1. EPERM Errors: Windows file locking in node_modules/next directory from previous failed installations
+  2. ECONNRESET: Network timeout issues during package download from npm registry
+  3. Package Conflicts: Current dependencies include bleeding-edge versions that may have compatibility issues
+  4. Missing Windows-Specific Setup: No documentation for Windows environment requirements
+
+Changes to be made:
+  A. IMMEDIATE CLEANUP:
+    - Force remove existing node_modules directory using Windows-compatible commands
+    - Clear npm cache completely to remove corrupted package data
+    - Close all VS Code instances and terminals that may be locking files
+  
+  B. PACKAGE.JSON OPTIMIZATION:
+    - Keep current Next.js 16.1.1 (canary build - acceptable for development)
+    - Keep React 19.2.3 (required for reactCompiler: true in next.config.mjs)
+    - Keep Biome 2.2.0 for linting/formatting (aligns with clean code requirements)
+    - Keep Tailwind CSS v4 (modern utility-first CSS framework)
+    - Remove babel-plugin-react-compiler (redundant - built into Next.js 16+)
+  
+  C. WINDOWS ENVIRONMENT SETUP:
+    - Verify Node.js version compatibility (16.8+ required for Next.js 16)
+    - Configure npm for Windows file system limitations
+    - Add Windows-specific .gitignore entries if needed
+  
+  D. NETWORK RESILIENCE:
+    - Configure npm with timeout and retry settings
+    - Add fallback registry configuration for connection issues
+  
+  E. CLEAN REINSTALLATION PROCESS:
+    - Use --no-bin-links flag for Windows compatibility
+    - Install dependencies incrementally to isolate any problematic packages
+    - Verify each major dependency installs successfully before proceeding
+
+Impact: 
+  - Eliminates file permission errors blocking npm operations
+  - Ensures reliable package installation on Windows environment  
+  - Maintains clean, efficient codebase per project requirements
+  - Adds Windows-specific setup documentation for future reference
+  - Preserves modern Next.js/React setup with proper tooling
+
+Windows-Specific Considerations Added:
+  - Documents EPERM error resolution for Windows file system
+  - Adds npm configuration for Windows path length limitations
+  - Includes terminal/IDE process management for file lock prevention
+
+Status: APPROVED ✓
+
+[ISSUE ENCOUNTERED] - Change #5 Follow-up: Lightningcss Missing Native Module
+Date: January 2, 2026
+Issue: npm run dev failed with "Cannot find module '../lightningcss.win32-x64-msvc.node'"
+Root Cause: Tailwind CSS v4 requires lightningcss native module which failed to install properly on Windows
+Error Details:
+  - lightningcss native binary for Windows x64 MSVC was not installed correctly
+  - Tailwind CSS v4 has hard dependency on lightningcss for CSS processing
+  - PostCSS configuration was trying to load @tailwindcss/postcss plugin
+  - globals.css was importing tailwindcss which triggered the module resolution
+
+[PENDING APPROVAL] - Change #6: Remove Tailwind CSS Dependencies
+Date: January 2, 2026
+Description: Remove all Tailwind CSS and lightningcss packages that are causing module resolution errors
+Changes to be made:
+  - Remove from package.json dependencies: lightningcss
+  - Remove from package.json devDependencies: @tailwindcss/postcss, tailwindcss
+  - Update src/app/globals.css: Replace tailwindcss import with basic global CSS styles
+  - Update postcss.config.mjs: Remove @tailwindcss/postcss plugin configuration
+  - Run npm install to clean up node_modules and remove unused packages
+
+Impact: 
+  - Eliminates lightningcss native module error
+  - Removes dependency on packages with Windows compatibility issues
+  - Maintains clean codebase without unused/broken dependencies
+  - Project can run successfully without CSS framework (can add alternatives later if needed)
+  - Reduces project dependencies from 28 to 9 packages
+
+Status: APPROVED ✓
+
+[IMPLEMENTED] - Change #6: Remove Tailwind CSS Dependencies
+Date: January 2, 2026
+Status: COMPLETED ✓
+Files Modified:
+  - package.json: Removed lightningcss, @tailwindcss/postcss, tailwindcss
+  - src/app/globals.css: Replaced @import "tailwindcss" with basic global styles
+  - postcss.config.mjs: Removed @tailwindcss/postcss plugin, left empty plugins object
+Result: npm install completed successfully, removed 19 packages. Project ready to run without errors.
+
+[PENDING APPROVAL] - Change #7: Create Responsive Navigation Menu
+Date: January 2, 2026
+Description: Implement responsive navigation menu with mobile hamburger and desktop horizontal layout
+Menu Design:
+  MOBILE VIEW (< 768px):
+    - Hamburger menu button (☰) in top-right corner
+    - Collapsible dropdown with vertical menu items: //home, //projects, //contact
+    - Click to toggle open/close
+  DESKTOP VIEW (≥ 768px):
+    - Horizontal header with menu items side by side
+    - No hamburger button, all items always visible
+    - Clean layout with no borders
+  
+Changes to be made:
+  - Create src/app/components/Header.js: Responsive header component with toggle state
+  - Update src/app/layout.js: Import and add Header component
+  - Update src/app/page.js: Remove "Hello world!" placeholder
+  - Update src/app/globals.css: Add header, navigation, and responsive styles
+  
+Code Practices:
+  - Pure React with CSS - no external libraries
+  - Simple state management for mobile menu toggle
+  - CSS media queries for responsive breakpoints
+  - Clean, semantic HTML structure
+  - Efficient, no redundant code
+
+Impact: Provides functional navigation structure for portfolio site with mobile-first responsive design
+
+Status: APPROVED ✓
+
+[IMPLEMENTED] - Change #7: Create Responsive Navigation Menu
+Date: January 2, 2026
+Status: COMPLETED ✓
+Files Created:
+  - src/app/components/Header.js: Responsive header with hamburger toggle state
+Files Modified:
+  - src/app/layout.js: Added Header import and component
+  - src/app/page.js: Removed "Hello world!" placeholder
+  - src/app/globals.css: Added header, nav, hamburger, and responsive styles
+Result: 
+  - Mobile view: Hamburger menu in top-right, dropdown with vertical menu items
+  - Desktop view: Horizontal menu items side by side (//home //projects //contact)
+  - Clean implementation with no redundant code, pure React + CSS
+  - Ready to test with npm run dev
+
+[PENDING APPROVAL] - Change #8: Implement Single-Page Scrolling Architecture with Section Components
+Date: January 9, 2026
+Description: Create seamless single-page application experience with three distinct sections (Home, Projects, Contact) that appear as separate pages but function as one continuous scrolling experience
+
+OBJECTIVE:
+  - Create Home, Projects, and Contact as conceptually separate sections
+  - Code them as separate component files for organization and maintainability
+  - Present them as ONE continuous scrolling page to the user
+  - Share same background wallpaper, header, and font styling throughout
+  - Implement seamless transitions with no page reloads
+  - Enable header navigation to smooth scroll to each section
+  - Keep header and wallpaper fixed/persistent during scrolling
+
+TECHNICAL APPROACH:
+  Architecture:
+    - Keep page.js as main container rendering all three sections
+    - Create Projects.js and Contact.js as components (not routes)
+    - Use CSS scroll-behavior: smooth for seamless scrolling
+    - Implement anchor-based navigation with id attributes
+    - Fixed background and sticky header remain constant during scroll
+
+IMPLEMENTATION STEPS:
+
+  STEP 1: Update Header.js Navigation Links
+    File: src/app/components/Header.js
+    Changes:
+      - Keep existing href="#home" (points to top of page.js)
+      - href="#projects" scrolls to projects section
+      - href="#contact" scrolls to contact section
+      - Smooth scroll behavior handled via CSS
+
+  STEP 2: Create Projects.js Component
+    File: src/app/components/Projects.js (NEW)
+    Structure:
+      - <section id="projects" className="page-section">
+      - Same font family (inherited from body)
+      - Same box structure as home page
+      - Full viewport height (min-height: 100vh)
+      - Section ID enables anchor navigation
+    Content:
+      - Heading: "My Projects"
+      - Three boxes similar to home page layout
+      - Project descriptions and portfolio items
+
+  STEP 3: Create Contact.js Component
+    File: src/app/components/Contact.js (NEW)
+    Structure:
+      - <section id="contact" className="page-section">
+      - Identical foundation to home and projects
+      - Uses inherited background and fonts
+      - Same box layout structure
+      - Full viewport height
+    Content:
+      - Heading: "Contact Me"
+      - Contact information and form elements
+      - Three boxes for contact methods or info
+
+  STEP 4: Update page.js to Include All Sections
+    File: src/app/page.js
+    Changes:
+      - Wrap existing content in <section id="home" className="page-section">
+      - Import Projects and Contact components
+      - Render all three sections sequentially (Home → Projects → Contact)
+      - Sections stack vertically for smooth scrolling experience
+
+  STEP 5: Update globals.css for Seamless Scrolling
+    File: src/app/globals.css
+    Additions:
+      - html { scroll-behavior: smooth; } for smooth transitions
+      - .page-section class with min-height: 100vh (full viewport per section)
+      - Flex layout for vertical centering of content
+      - Consistent padding across sections
+      - Background remains fixed (already set on body)
+      - Header remains sticky (already configured)
+
+EXPECTED USER EXPERIENCE:
+  - Page Load: User sees home section with 3 boxes
+  - Click "//projects": Page smoothly scrolls to projects section
+  - Click "//contact": Page smoothly scrolls to contact section
+  - Click "//home": Scrolls back to top
+  - Manual Scrolling: Natural scroll through all sections
+  - Visual Consistency: Fixed wallpaper, sticky header, identical fonts
+  - No Page Reloads: Everything on same page with CSS smooth scroll
+
+WHY THIS APPROACH:
+  ✓ Code Organization: Separate component files maintain code cleanliness
+  ✓ No Redundancy: Components share global styles, no duplicate CSS
+  ✓ Seamless Experience: Fixed background + sticky header + smooth scroll = unified page
+  ✓ Efficient Navigation: Anchor links with IDs enable instant section jumping
+  ✓ Scalable: Easy to add content to each section independently
+  ✓ Guidelines Compliant: No unused files, every line serves purpose, clean structure
+
+FILES TO BE MODIFIED/CREATED:
+  Modified:
+    - src/app/page.js: Add section wrapper and import components
+    - src/app/globals.css: Add smooth scroll and section styles
+  Created:
+    - src/app/components/Projects.js: New projects section component
+    - src/app/components/Contact.js: New contact section component
+  Total: 2 new files, 2 modified files, 0 deleted files
+
+TESTING CHECKLIST:
+  - Home navigation scrolls to top
+  - Projects navigation scrolls to projects section smoothly
+  - Contact navigation scrolls to contact section smoothly
+  - Manual scrolling works naturally between sections
+  - Background wallpaper remains fixed during scroll
+  - Header stays visible at top during scroll
+  - All sections use same fonts and styling
+  - Mobile hamburger menu works with new navigation
+  - No console errors
+  - Dev server runs without issues
+
+Impact: Creates organized, maintainable single-page architecture with seamless user experience while following all project guidelines for code efficiency and cleanliness
+
+Status: APPROVED ✓

@@ -1,0 +1,365 @@
+/* Basic global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Courier New', Courier, 'Lucida Console', Monaco, monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000;
+  color: #fff;
+  position: relative;
+}
+
+main {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Page sections - each takes full viewport */
+.page-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Home section with wallpaper background */
+#home {
+  background: url('/background.webp') no-repeat center center;
+  background-size: cover;
+}
+
+/* Desktop view: increase wallpaper size by 20% */
+@media (min-width: 768px) {
+  #home {
+    background-size: 146%;
+  }
+}
+
+#home::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+#home .section-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Projects and Contact sections with solid black background */
+#projects,
+#contact {
+  background: #000;
+}
+
+.section-content {
+  text-align: center;
+}
+
+main h1 {
+  font-size: 2.875rem;
+}
+
+main p {
+  font-size: 1.5rem;
+}
+.boxes {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.box {
+  width: 602.4px;
+  height: 303.18px;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(0px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 25px 30px 35px 30px;
+  overflow: hidden;
+}
+
+.box-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.box h2 {
+  font-size: 2rem;
+  text-align: right;
+  margin: 0;
+  display: inline-block;
+}
+
+.blue-underline {
+  border-bottom: 4px solid #0066ff;
+  padding-bottom: 2px;
+  width: fit-content;
+}
+
+.orange-underline {
+  border-bottom: 4px solid #ff8800;
+  padding-bottom: 2px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.pink-underline {
+  border-bottom: 4px solid #ff69b4;
+  padding-bottom: 2px;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.box p {
+  font-size: 1.2rem;
+  text-align: left;
+  margin: 1rem 0 0 0;
+  font-weight: bold;
+}
+
+.box img {
+  max-width: 29%;
+  height: auto;
+  object-fit: contain;
+}
+
+.box3 img {
+  max-width: 20%;
+}
+
+.box3 {
+  padding: 25px 30px 35px 30px;
+}
+/* Header Styles */
+.header {
+  position: sticky;
+  top: 0;
+  padding: 0.7rem 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hamburger Menu Button - Mobile Only */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1000;
+  color: #fff;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  list-style: none;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  opacity: 1;
+}
+
+.nav-menu:hover a {
+  opacity: 0.3;
+}
+
+.nav-menu a:hover {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+/* Contact Links - Same hover effect as navigation */
+.contact-links:hover a {
+  opacity: 0.3;
+}
+
+.contact-links a {
+  display: inline-block;
+}
+
+.contact-links a:hover {
+  opacity: 1 !important;
+  transform: scale(1.25);
+}
+
+/* Project Images Gallery */
+.project-images {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.project-images img {
+  width: calc(25% - 1.5rem);
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    background: rgba(233, 232, 232, 0.95);
+    padding: 1rem 2rem;
+    gap: 1rem;
+    display: none;
+    border-radius: 0.5rem;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu a {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .nav-menu a:hover {
+    color: #333;
+  }
+
+  main h1 {
+    font-size: 2.07rem;
+  }
+
+  main p {
+    font-size: 0.9rem;
+  }
+
+  .boxes {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .box {
+    width: 90%;
+    max-width: 602.4px;
+    height: auto;
+    min-height: 250px;
+    padding: 15px 20px 30px 20px;
+  }
+
+  .box-content {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .box h2 {
+    font-size: 1.3rem;
+    text-align: left;
+  }
+
+  .box p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .box img {
+    max-width: 100%;
+    width: 130px;
+    align-self: center;
+  }
+
+  .box3 img {
+    max-width: 100%;
+    width: 100px;
+  }
+
+  .project-images {
+    flex-direction: column;
+  }
+
+  .project-images img {
+    width: 100%;
+  }
+
+  /* Projects page responsive text */
+  #projects h1 {
+    font-size: 2.07rem;
+  }
+
+  #projects p {
+    font-size: 0.9rem;
+  }
+
+  #projects h2 {
+    font-size: 1.3rem;
+  }
+
+  #projects h3 {
+    font-size: 1.1rem;
+  }
+
+  /* Contact page responsive text */
+  #contact h1 {
+    font-size: 2.07rem;
+  }
+
+  .contact-links a {
+    font-size: 1.3rem !important;
+  }
+}
