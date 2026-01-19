@@ -57,31 +57,52 @@ export default function PdfViewer() {
             left: 0,
             width: '100vw',
             height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 9999,
-            padding: '2rem',
+            padding: 'clamp(2rem, 8vw, 4rem)',
+            cursor: 'pointer',
           }}
         >
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              width: '75vw',
-              height: '90vh',
-              maxWidth: '1200px',
-              backgroundColor: '#fff',
+              width: '100%',
+              height: '100%',
+              maxWidth: '900px',
+              maxHeight: '85vh',
+              backgroundColor: '#333',
               borderRadius: '0.5rem',
               overflow: 'hidden',
               boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5)',
+              display: 'flex',
+              flexDirection: 'column',
+              cursor: 'default',
             }}
           >
+            <button
+              onClick={closePdf}
+              style={{
+                alignSelf: 'flex-end',
+                background: '#333',
+                color: '#fff',
+                border: 'none',
+                padding: '0.5rem 1rem',
+                fontSize: '1.2rem',
+                cursor: 'pointer',
+                zIndex: 10000,
+              }}
+              aria-label="Close PDF"
+            >
+              ✕
+            </button>
             <iframe
               src="/Elisha professional resume.pdf"
               style={{
                 width: '100%',
-                height: '100%',
+                flex: 1,
                 border: 'none',
               }}
               title="Resume full view"
